@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Столярня — меблі з характером, доставка по всій Україні</title>
+<meta name="description" content="Меблі ручної роботи. Доставка Новою поштою по всій Україні.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="logo">Стіл<span>ярня</span></div>
+    <nav class="main-nav">
+      <a href="#catalog">Каталог</a>
+      <a href="#about">Про нас</a>
+      <a href="#contacts">Контакти</a>
+    </nav>
+    <a href="#contacts" class="header-cta">Зв'язатися</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <div class="hero-text">
+      <div class="eyebrow">Меблі · Україна · доставка НП</div>
+      <h1>Меблі, які тримають форму роками</h1>
+      <p>Кожен виріб робимо під замовлення: масив дерева, тканина на вибір, точні розміри під ваш простір. Відправляємо в будь-яке місто України.</p>
+      <div class="hero-actions">
+        <a href="#catalog" class="btn-primary">Дивитись каталог</a>
+        <a href="#contacts" class="btn-ghost">Як замовити →</a>
+      </div>
+    </div>
+    <div class="hero-figure">
+      <img src="images/placeholder.jpg" alt="Меблі Столярня" id="hero-img">
+    </div>
+  </section>
+
+  <svg class="grain-line wrap" viewBox="0 0 1200 14" preserveAspectRatio="none">
+    <path d="M0 7 Q 30 1, 60 7 T 120 7 T 180 7 T 240 7 T 300 7 T 360 7 T 420 7 T 480 7 T 540 7 T 600 7 T 660 7 T 720 7 T 780 7 T 840 7 T 900 7 T 960 7 T 1020 7 T 1080 7 T 1140 7 T 1200 7"
+      fill="none" stroke="currentColor" stroke-width="1.5"/>
+  </svg>
+
+  <section class="catalog-section wrap" id="catalog">
+    <div class="section-head">
+      <h2>Каталог</h2>
+      <span class="count" id="catalog-count"></span>
+    </div>
+    <div class="grid" id="catalog-grid">
+      <div class="empty-state">Завантаження товарів…</div>
+    </div>
+  </section>
+
+  <section class="wrap" id="about" style="padding-bottom: 64px; max-width: 640px;">
+    <h2 style="font-family: var(--font-display); font-size: 28px;">Про нас</h2>
+    <p style="color: var(--ink-soft);">Ми — невелика столярня, яка робить меблі на замовлення для оселі та офісу. Працюємо з масивом дерева, ЛДСП та тканинами українських постачальників. Відправляємо Новою поштою по всій Україні.</p>
+  </section>
+</main>
+
+<footer class="site-footer" id="contacts">
+  <div class="wrap">
+    <div>© 2026 Столярня. Усі права захищено.</div>
+    <div>
+      Тел.: <a href="tel:+380000000000">+380 00 000 00 00</a> ·
+      <a href="https://t.me/ВАШ_НІК" target="_blank" rel="noopener">Telegram</a> ·
+      <a href="https://instagram.com/ВАШ_АКАУНТ" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Firebase SDK (compat-версія, простіша для підключення) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+
+<script src="js/firebase-config.js"></script>
+<script src="js/catalog.js"></script>
+</body>
+</html>

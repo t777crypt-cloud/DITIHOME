@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Адмінка — Столярня</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="login-box" class="login-box">
+  <h1>Вхід в адмінку</h1>
+  <form id="login-form">
+    <div class="field">
+      <label>Email</label>
+      <input type="email" id="login-email" required autocomplete="username">
+    </div>
+    <div class="field">
+      <label>Пароль</label>
+      <input type="password" id="login-password" required autocomplete="current-password">
+    </div>
+    <button type="submit" class="btn-primary" style="width:100%; border:1px solid var(--ink);">Увійти</button>
+    <div id="login-error" class="status-msg err"></div>
+  </form>
+</div>
+
+<div id="admin-panel" class="admin-shell" style="display:none;">
+  <h1>Додати товар</h1>
+  <p class="sub">Товар одразу з'явиться в каталозі на сайті у всіх відвідувачів.</p>
+
+  <form id="product-form">
+    <div class="field">
+      <label>Назва товару *</label>
+      <input type="text" id="p-name" placeholder="Стілець Модерн, білий" required>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Ціна, грн</label>
+        <input type="number" id="p-price" placeholder="2400">
+      </div>
+      <div class="field">
+        <label>Розміри</label>
+        <input type="text" id="p-size" placeholder="45×50×90 см">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Матеріал / колір</label>
+      <input type="text" id="p-material" placeholder="Дуб, тканина беж">
+    </div>
+
+    <div class="field">
+      <label>Фото товару *</label>
+      <input type="file" id="p-photo" accept="image/*" required>
+    </div>
+
+    <button type="submit" class="btn-primary">Додати товар</button>
+    <div id="status-msg" class="status-msg"></div>
+  </form>
+
+  <div class="product-list-admin">
+    <h2 style="font-family: var(--font-display); font-size: 20px;">Товари в каталозі</h2>
+    <div id="admin-product-list"></div>
+  </div>
+
+  <button id="logout-btn" class="btn-ghost" style="margin-top: 32px;">Вийти</button>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+
+<script src="js/firebase-config.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
