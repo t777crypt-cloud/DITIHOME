@@ -1,12 +1,18 @@
+// =========================================================
+// ВСТАВЬТЕ СЮДА СВОИ КЛЮЧИ ИЗ FIREBASE
+// Project settings -> General -> "Your apps" -> SDK setup and configuration
+// Инструкция, где это взять — в файле README.md
+// =========================================================
 const firebaseConfig = {
-  apiKey: "AIzaSyDtXkdokgGA_fJaCdZ2DD4BkzzmNA4S-KM",
-  authDomain: "ditihome-9cda5.firebaseapp.com",
-  projectId: "ditihome-9cda5",
-  storageBucket: "ditihome-9cda5.firebasestorage.app",
-  messagingSenderId: "397567560052",
-  appId: "1:397567560052:web:00a4a2d99bf4fcde118421"
+  apiKey: "ВСТАВЬТЕ_СЮДА",
+  authDomain: "ВСТАВЬТЕ_СЮДА.firebaseapp.com",
+  projectId: "ВСТАВЬТЕ_СЮДА",
+  storageBucket: "ВСТАВЬТЕ_СЮДА.appspot.com",
+  messagingSenderId: "ВСТАВЬТЕ_СЮДА",
+  appId: "ВСТАВЬТЕ_СЮДА"
 };
 
+// Инициализация Firebase (используем версию 10, подключена через CDN в HTML)
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const auth = firebase.auth();

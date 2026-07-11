@@ -28,6 +28,12 @@
 </div>
 
 <div id="admin-panel" class="admin-shell" style="display:none;">
+  <div class="admin-tabs">
+    <button class="admin-tab active" id="tab-products" onclick="showTab('products')">Товари</button>
+    <button class="admin-tab" id="tab-orders" onclick="showTab('orders')">Замовлення <span id="orders-badge"></span></button>
+  </div>
+
+  <div id="products-panel">
   <h1>Додати товар</h1>
   <p class="sub">Товар одразу з'явиться в каталозі на сайті у всіх відвідувачів.</p>
 
@@ -65,6 +71,13 @@
   <div class="product-list-admin">
     <h2 style="font-family: var(--font-display); font-size: 20px;">Товари в каталозі</h2>
     <div id="admin-product-list"></div>
+  </div>
+  </div>
+
+  <div id="orders-panel" style="display:none;">
+    <h1>Замовлення</h1>
+    <p class="sub">Нові замовлення від клієнтів з'являються тут автоматично.</p>
+    <div id="orders-list"></div>
   </div>
 
   <button id="logout-btn" class="btn-ghost" style="margin-top: 32px;">Вийти</button>

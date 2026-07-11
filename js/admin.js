@@ -18,6 +18,7 @@ auth.onAuthStateChanged(user => {
     loginBox.style.display = "none";
     panel.style.display = "block";
     loadAdminList();
+    loadOrders();
   } else {
     loginBox.style.display = "block";
     panel.style.display = "none";
@@ -84,7 +85,72 @@ productForm.addEventListener("submit", async (e) => {
   }
 });
 
-// --- Список товаров в админке + удаление ---
+// --- Вкладки ---
+function showTab(tab) {
+  document.getElementById("tab-products").classList.toggle("active", tab === "products");
+  document.getElementById("tab-orders").classList.toggle("active", tab === "orders");
+  document.getElementById("products-panel").style.display = tab === "products" ? "block" : "none";
+  document.getElementById("orders-panel").style.display = tab === "orders" ? "block" : "none";
+  if (tab === "orders") loadOrders();
+}
+
+// --- Заказы ---
+async function loadOrders() {
+  const listEl = document.getElementById("orders-list");
+  listEl.innerHTML = "Завантаження...";
+
+  const snapshot = await db.collection("orders").orderBy("createdAt", "desc").get();
+
+  if (snapshot.empty) {
+    listEl.innerHTML = "<p>Замовлень ще немає.</p>";
+    document.getElementById("orders-badge").textContent = "";
+    return;
+  }
+
+  let newCount = 0;
+  let html = "";
+  snapshot.forEach(doc => {
+    const o = doc.data();
+    if (o.status === "new") newCount++;
+    const itemsText = (o.items || []).map(i => `${i.name} ×${i.qty}`).join(", ");
+    const date = o.createdAt ? o.createdAt.toDate().toLocaleString("uk-UA") : "";
+    html += `
+      <div class="order-card">
+        <div class="order-top">
+          <span class="order-id">${date}</span>
+          <span class="order-status ${o.status === 'done' ? 'done' : ''}">${o.status === 'done' ? 'Виконано' : 'Нове'}</span>
+        </div>
+        <div class="order-contact">
+          <strong>${o.name}</strong> · ${o.phone}<br>
+          ${o.city ? o.city + (o.branch ? ", відділення " + o.branch : "") : ""}
+          ${o.comment ? "<br>Коментар: " + o.comment : ""}
+        </div>
+        <div class="order-items">${itemsText} — разом ${o.total} грн</div>
+        <div class="order-actions">
+          ${o.status !== 'done' ? `<button class="mark-done" data-id="${doc.id}">Позначити виконаним</button>` : ""}
+          <button class="delete-order" data-id="${doc.id}">Видалити</button>
+        </div>
+      </div>
+    `;
+  });
+  listEl.innerHTML = html;
+  document.getElementById("orders-badge").textContent = newCount > 0 ? `(${newCount})` : "";
+
+  listEl.querySelectorAll(".mark-done").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      await db.collection("orders").doc(btn.dataset.id).update({ status: "done" });
+      loadOrders();
+    });
+  });
+
+  listEl.querySelectorAll(".delete-order").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      if (!confirm("Видалити це замовлення?")) return;
+      await db.collection("orders").doc(btn.dataset.id).delete();
+      loadOrders();
+    });
+  });
+}
 async function loadAdminList() {
   adminList.innerHTML = "Завантаження...";
   const snapshot = await db.collection("products").orderBy("createdAt", "desc").get();

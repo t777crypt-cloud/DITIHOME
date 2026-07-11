@@ -19,6 +19,7 @@ function renderEmpty() {
 function productCard(id, p) {
   const price = p.price ? `${p.price} грн` : "Ціна за запитом";
   const spec = [p.material, p.size].filter(Boolean).join(" · ");
+  const safeName = p.name.replace(/'/g, "\\'");
   return `
     <article class="card">
       <div class="card-photo">
@@ -29,9 +30,9 @@ function productCard(id, p) {
         ${p.material ? `<div class="card-material">${p.material}</div>` : ""}
         ${spec ? `<div class="card-spec">${spec}</div>` : ""}
         <div class="card-price">${price}</div>
-        <a class="card-order" href="${CONTACT_LINK}" target="_blank" rel="noopener">
-          Замовити
-        </a>
+        <button class="card-order add-to-cart" onclick='addToCart({id:"${id}", name:"${safeName}", price:${p.price || 0}, imageUrl:"${p.imageUrl || ""}"})'>
+          Додати в кошик
+        </button>
       </div>
     </article>
   `;
